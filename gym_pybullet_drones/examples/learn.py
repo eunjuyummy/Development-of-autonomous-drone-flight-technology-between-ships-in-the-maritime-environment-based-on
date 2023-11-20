@@ -14,39 +14,81 @@ This is a minimal working example integrating `gym-pybullet-drones` with
 reinforcement learning libraries `stable-baselines3`.
 
 """
+
 import time
 import argparse
 import gymnasium as gym
 import numpy as np
 from stable_baselines3 import PPO
+from stable_baselines3 import A2C
+from stable_baselines3 import SAC
+from stable_baselines3 import TD3
+from stable_baselines3 import DDPG
 
 from gym_pybullet_drones.utils.Logger import Logger
-from gym_pybullet_drones.envs.single_agent_rl.HoverAviary import HoverAviary
+from gym_pybullet_drones.envs.single_agent_rl.FlyThruGateAviary import FlyThruGateAviary
 from gym_pybullet_drones.utils.utils import sync, str2bool
 
 DEFAULT_GUI = True
-DEFAULT_RECORD_VIDEO = False
+DEFAULT_RECORD_VIDEO = True
 DEFAULT_OUTPUT_FOLDER = 'results'
 DEFAULT_COLAB = False
 
-def run(output_folder=DEFAULT_OUTPUT_FOLDER, gui=DEFAULT_GUI, plot=True, colab=DEFAULT_COLAB, record_video=DEFAULT_RECORD_VIDEO):
+def run(output_folder=DEFAULT_OUTPUT_FOLDER, gui=DEFAULT_GUI, plot=False, colab=DEFAULT_COLAB, record_video=DEFAULT_RECORD_VIDEO):
 
     #### Check the environment's spaces ########################
-    env = gym.make("hover-aviary-v0")
+    env = gym.make("flythrugate-aviary-v0")
     print("[INFO] Action space:", env.action_space)
     print("[INFO] Observation space:", env.observation_space)
 
-    #### Train the model #######################################
+    #### Train the model #######################################    
+    
     model = PPO("MlpPolicy",
                 env,
-                verbose=1
+                verbose=1,
+                tensorboard_log="./tensor_result/algo_flythrugate_tensorboard/"
                 )
-    model.learn(total_timesteps=10000) # Typically not enough
-
+    
+    '''
+    model = A2C("MlpPolicy",
+                env,
+                verbose=1,
+                tensorboard_log="./a2c_flythrugate_tensorboard/"
+                )
+    '''
+    '''
+    model = SAC("MlpPolicy",
+                env,
+                verbose=1,
+                tensorboard_log="./sac_flythrugate_tensorboard/"
+                )
+    '''
+    '''
+    model = TD3("MlpPolicy",
+                env,
+                verbose=1,
+                tensorboard_log="./td3_flythrugate_tensorboard/"
+                )
+    '''
+           
+    '''
+    model = DDPG("MlpPolicy",
+                env,
+                verbose=1,
+                tensorboard_log="./ddpg_flythrugate_tensorboard/"
+                )
+    '''
+           
+    model.learn(total_timesteps=2e6, progress_bar=True) # Typically not enough
+    
+    #### Save the model ########################################
+    model.save('success_model.zip')
+    
     #### Show (and record a video of) the model's performance ##
-    env = HoverAviary(gui=gui,
-                      record=record_video
-                     )
+    env = FlyThruGateAviary(gui=gui,
+                            record=record_video
+                            )
+    
     logger = Logger(logging_freq_hz=int(env.CTRL_FREQ),
                     num_drones=1,
                     output_folder=output_folder,
@@ -84,7 +126,7 @@ if __name__ == "__main__":
     ARGS = parser.parse_args()
 
     run(**vars(ARGS))
-
+    
 # """Learning script for single agent problems.
 
 # Agents are based on `stable_baselines3`'s implementation of A2C, PPO SAC, TD3, DDPG.

@@ -19,8 +19,8 @@ class FlyThruGateAviary(BaseSingleAgentAviary):
                  physics: Physics=Physics.PYB,
                  pyb_freq: int = 240,
                  ctrl_freq: int = 240,
-                 gui=False,
-                 record=False,
+                 gui=True,
+                 record=True,
                  obs: ObservationType=ObservationType.KIN,
                  act: ActionType=ActionType.RPM
                  ):
@@ -101,9 +101,13 @@ class FlyThruGateAviary(BaseSingleAgentAviary):
             The reward.
 
         """
+        reward = 0.0
         state = self._getDroneStateVector(0)
         norm_ep_time = (self.step_counter/self.PYB_FREQ) / self.EPISODE_LEN_SEC
-        return -10 * np.linalg.norm(np.array([0, -2*norm_ep_time, 0.75])-state[0:3])**2
+        if (state[0] >= -.27) and (state[0] <= .27) and (state[1] <= -0.9) and (state[1] <= -0.9) and (state[2] <= .5):
+            reward = 10
+            
+        return (-10 * np.linalg.norm(np.array([0, -2*norm_ep_time, 0.75])-state[0:3])**2) + reward 
 
     ################################################################################
     
@@ -134,7 +138,11 @@ class FlyThruGateAviary(BaseSingleAgentAviary):
             Always false.
 
         """
-        return False
+        state = self._getDroneStateVector(0)
+        if (state[0] >= -.27) and (state[0] <= .27) and (state[1] <= -0.9) and (state[1] <= -0.9) and (state[2] <= .5):
+            return True
+        else:
+            return False
 
     ################################################################################
     
