@@ -3,7 +3,7 @@
  본 논문은 혈액 운송과 같은 제한 시간을 갖는 작업 환경에서 드론의 자율비행에 관한 것으로, 기존 Proportional-Integral-Derivative (PID) 방식에 비해 강화학습(Reinforcement Learning; RL)을 이용하는 경우의 성능 향상을 비교 실험을 통해서 제시한다. 오픈소스 드론 시뮬레이터를 통해 PID 기반 드론의 자율비행보다 RL 기반 드론의 평균 비행시간이 약 2.8초 빠른 것을 확인할 수 있었다. 이러한 결과를 바탕으로 짧은 시간 내에 목표 달성이 필요로 하는 작업 환경에서 강화학습이 효과적으로 사용될 수 있을 것으로 기대한다.
 
 ---
-# gym-pybullet-drones
+# gym-pybullet-drones 
 
 This is a minimalist refactoring of the original `gym-pybullet-drones` repository, designed for compatibility with [`gymnasium`](https://github.com/Farama-Foundation/Gymnasium), [`stable-baselines3` 2.0](https://github.com/DLR-RM/stable-baselines3/pull/1327), and SITL [`betaflight`](https://github.com/betaflight/betaflight)/[`crazyflie-firmware`](https://github.com/bitcraze/crazyflie-firmware/).
 
