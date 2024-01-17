@@ -7,7 +7,7 @@
  키워드: 강화학습, 드론, PID 한국통신학회
  
 ---
-# gym-pybullet-drones 
+## gym-pybullet-drones 
 <img src="files/readme_images/RL.gif" alt="control info" width="450">
 
 ## Installation
@@ -23,3 +23,4 @@ cd gym_pybullet_drones/examples/
 
 python main.py
 ```
+## PID vs. RL
