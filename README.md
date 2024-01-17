@@ -6,18 +6,16 @@
 ---
 ## Installation
 
-Tested on Intel x64/Ubuntu 22.04 and Apple Silicon/macOS 13.4.
-
 ```sh
-git clone https://github.com/utiasDSL/gym-pybullet-drones.git
+git clone https://github.com/eunjuyummy/gym-pybullet-drones.git
+sudo apt install ffmpeg
+
 cd gym-pybullet-drones/
+sudo pip install -e.
 
-conda create -n drones python=3.10
-conda activate drones
+cd gym_pybullet_drones/examples/
 
-pip3 install --upgrade pip
-pip3 install -e . # if needed, `sudo apt install build-essential` to install `gcc` and build `pybullet`
-
+python main.py
 ```
 # gym-pybullet-drones
 
