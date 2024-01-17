@@ -24,3 +24,6 @@ cd gym_pybullet_drones/examples/
 python main.py
 ```
 ## PID vs. RL
+PID와 RL 기반 비행을 동시에 비교하기 위한 통합 환경 구축
+<br/>- BothCtrlAviary.py
+<br/>- main.py
