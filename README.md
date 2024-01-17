@@ -28,7 +28,3 @@ cd gym_pybullet_drones/examples/
 
 python main.py
 ```
-
-저자: 권은주,정희철,김현석
- 저자 소속: 동아대학교 
- 키워드: 강화학습, 드론, PID 한국통신학회
