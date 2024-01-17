@@ -1,3 +1,37 @@
+# 제한 시간을 갖는 작업 환경에서 강화학습 기반 드론의 자율비행 비교 연구
+저자	권은주,정희철,김현석
+저자 소속(국문)	동아대학교
+키워드	강화학습, 드론, PID
+한국통신학회
+---
+사단법인 한국통신학회 / 주소 : (우)06296 서울특별시 강남구 논현로38길 32-3(도곡동)
+고유번호 : 214-82-01190 / 대표전화 : 02-3453-5555 / 팩스 : 02-539-5588
+
+
+
+권은주 <kkkoj4284@donga.ac.kr>
+오후 5:27 (41분 전)
+hertzkim에게
+
+
+	바이러스가 없습니다.www.avg.com
+
+
+## Installation
+
+Tested on Intel x64/Ubuntu 22.04 and Apple Silicon/macOS 13.4.
+
+```sh
+git clone https://github.com/utiasDSL/gym-pybullet-drones.git
+cd gym-pybullet-drones/
+
+conda create -n drones python=3.10
+conda activate drones
+
+pip3 install --upgrade pip
+pip3 install -e . # if needed, `sudo apt install build-essential` to install `gcc` and build `pybullet`
+
+```
 # gym-pybullet-drones
 
 This is a minimalist refactoring of the original `gym-pybullet-drones` repository, designed for compatibility with [`gymnasium`](https://github.com/Farama-Foundation/Gymnasium), [`stable-baselines3` 2.0](https://github.com/DLR-RM/stable-baselines3/pull/1327), and SITL [`betaflight`](https://github.com/betaflight/betaflight)/[`crazyflie-firmware`](https://github.com/bitcraze/crazyflie-firmware/).
